@@ -58,7 +58,7 @@ class Msp:
              time.sleep(0.1)
       
         ret = dll.QISRAudioWrite(sessionID, None, 0, MSP_AUDIO_SAMPLE_LAST, byref(epStatus), byref(recogStatus))  
-        print("所有待识别音频已全部发送完毕，等待获取识别结果")  
+       # print("所有待识别音频已全部发送完毕，等待获取识别结果")  
    
         
         laststr = ''  
