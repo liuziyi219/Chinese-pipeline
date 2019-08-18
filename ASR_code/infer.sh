@@ -33,8 +33,8 @@ if [ "$( echo "$1" | egrep '^[0-9]+$' )" ] ; then DAY="$1"
   else echo "$1?"
 fi #;  echo "DAY is $DAY ; 1 is $1 ; 2 is $2"
      
-#if [ -n "$DAY" ] ; then DIR="$BASEDIR/tv/$(date -ud "-$DAY day" +%Y)/$(date -ud "-$DAY day" +%Y-%m)/$(date -ud "-$DAY day" +%F)" ; fi 
-DIR="$BASEDIR/tv/2019/2019-05/2019-05-03"
+if [ -n "$DAY" ] ; then DIR="$BASEDIR/tv/$(date -ud "-$DAY day" +%Y)/$(date -ud "-$DAY day" +%Y-%m)/$(date -ud "-$DAY day" +%F)" ; fi 
+
 if [ -d $DIR ] ; then cd $DIR ; else echo "No $DIR" ; exit ; fi
 
 echo "\tWorking on `pwd`\n"
@@ -134,8 +134,8 @@ for manifest in $DAT* ; do
                continue
             fi
             echo $manifest' is done'
-            #rm $manifest
-            #rm -rf $PWDDIR/temp_data/$manifest
+            rm $manifest
+            rm -rf $PWDDIR/temp_data/$manifest
 done
 
 exit 0
