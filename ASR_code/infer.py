@@ -139,23 +139,24 @@ def infer():
               cutoff_top_n=args.cutoff_top_n,
               vocab_list=vocab_list,
               num_processes=args.num_proc_bsearch)
-            for result in result_transcripts:
+              index=0
+	    for result in result_transcripts:
 
               with open(args.output_file,'a+') as f:
                  print("\nOutput Transcription: %s" %
                  result.encode('utf-8'))
             #	 try:
              #    print(start_time)
-                 index=0
-                 start,m_sec = start_time.split('.')
-                 time_format = '%Y%m%d%H%M%S'
-                 end = (datetime.datetime.strptime(start,time_format) + datetime.timedelta(0,timelist[index])).strftime(time_format)
+            
+            #     start,m_sec = start_time.split('.')
+                 time_format = '%Y%m%d%H%M%S.%f'
+                 end = (datetime.datetime.strptime(start_time,time_format) + datetime.timedelta(0,timelist[index])).strftime(time_format)
                  index+=1
-                 prefix = start + '.' + m_sec +  '|' + end + '.' + m_sec + '|ASR_01|'
+                 prefix = start +  '|' + end[:-3]  + '|ASR_01|'
                  f.write(prefix)			
                  f.write(result.encode('utf-8'))
                  f.write('\n')
-                 start_time = end + '.' + m_sec
+                 start_time = end 
                 # except:
                  #    continue
         with open(args.output_file, 'a+') as f:
